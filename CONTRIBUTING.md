@@ -22,6 +22,8 @@ on your branch    →  Pull Request →  and leaves comments
 There is no email. There is no file upload. There is no WhatsApp photo of your screen.
 **All work is submitted through GitHub Pull Requests.** This is how real developers work.
 
+> 💡 **Visual Learner?** If you are using GitHub Desktop instead of the terminal, read our [**GitHub Desktop Guide for Beginners**](./GITHUB-DESKTOP-GUIDE.md) for a point-and-click tutorial for these exact steps.
+
 ---
 
 ## Step-by-Step: Submitting an Assignment

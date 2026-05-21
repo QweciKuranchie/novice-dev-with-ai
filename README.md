@@ -18,6 +18,7 @@
 | **Student — returning** | [Your Daily 8-Step Workflow](#student-workflow--your-daily-8-steps) below |
 | **Student — stuck on code** | [How to Ask for Help](#how-to-ask-for-help) below |
 | **Student — submitting assignment** | 👉 [`CONTRIBUTING.md`](./CONTRIBUTING.md) — full PR submission guide |
+| **Student — using GitHub Desktop** | 👉 [`GITHUB-DESKTOP-GUIDE.md`](./GITHUB-DESKTOP-GUIDE.md) — visual Git guide |
 | **Instructor** | 👉 [`TEACHING-GUIDE.md`](./TEACHING-GUIDE.md) — full Zoom day-of-class playbook |
 
 > 📌 **Students:** Your main reference is [`STUDENT-GUIDE.md`](./STUDENT-GUIDE.md).
@@ -272,6 +273,8 @@ You should see your name and email in the output.
 ---
 
 ## How to Clone and Contribute
+
+> 💡 **Beginner Tip:** If you prefer using a visual interface instead of the terminal for the steps below, read our [**GitHub Desktop Guide for Beginners**](./GITHUB-DESKTOP-GUIDE.md).
 
 ### Step 1 — Fork the Repository
 
