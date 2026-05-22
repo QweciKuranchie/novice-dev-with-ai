@@ -146,6 +146,8 @@ By the end of Day 1, your code will be live on GitHub.
 
 Follow along with the instructor sharing their screen on Zoom:
 
+> 💡 **Visual Learner?** The steps below use the terminal. If you prefer to use **GitHub Desktop** for a visual, point-and-click experience, read our [**GitHub Desktop Guide for Beginners**](./GITHUB-DESKTOP-GUIDE.md).
+
 #### A. Configure Git with Your Identity
 
 Open VS Code. Go to Terminal → New Terminal. Type these two commands:
