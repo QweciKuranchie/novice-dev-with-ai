@@ -1,18 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Richard Nuhu-My First webpage</title>
-    </head>
-    <body>
-        <h1>Hello I'm Richard Nuhu</h1>
-        <p>I am learning web development</p>
-        <p>I'm from Accra, Ghana</p>
-        <p>I want to learn web development because I want to build my own <a href="/student-projects/Richard-Nuhu/projects.html">web projects</a> and develop <a href="/student-projects/Richard-Nuhu/skills.html"> my skills</a>.</p>
-        <p> Learn more about me <a href="/student-projects/Richard-Nuhu/about.html">here</a>.</p>
-        <p><a href="/student-projects/Richard-Nuhu/contact.html">Contact me</a></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Morning Brew Cafe - A cozy neighborhood spot for artisanal coffee, refreshing teas, fresh pastries, and gourmet sandwiches in Accra, Ghana.">
+    <title>Morning Brew Cafe | Artisanal Coffee & Warm Atmosphere</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
 
-    </body>
+    <!-- Header & Navigation -->
+    <header>
+        <h1><a href="#home">Morning Brew Cafe</a></h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Brewed with Passion, Served with Warmth</h2>
+                <p>Welcome to Accra's coziest neighborhood spot for artisanal coffee blends, premium organic teas, and handcrafted delicacies.</p>
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="glass-card text-center">
+                    <h2>About Us</h2>
+                    <p>Welcome to Morning Brew Cafe, your cozy neighborhood spot for the best coffee and pastries in town. We are passionate about brewing the perfect cup of coffee and creating a warm, inviting atmosphere for our customers. Whether you're looking for a quick caffeine fix or a place to relax and catch up with friends, Morning Brew Cafe is the perfect destination.</p>
+                    <p>Our menu features a variety of coffee blends, from rich espressos to creamy lattes, as well as a selection of teas and refreshing cold brews. We also offer a delicious assortment of pastries, sandwiches, and snacks made fresh daily. At Morning Brew Cafe, we are committed to using high-quality ingredients and providing exceptional service to ensure every visit is a delightful experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu">
+            <div class="container">
+                <div class="glass-card text-center">
+                    <h2>Our Menu</h2>
+                    <p>Every item on our menu is carefully sourced, freshly prepared, and served with a smile.</p>
+                    
+                    <div class="menu-grid">
+                        <!-- Card 1: Coffee -->
+                        <div class="menu-card">
+                            <div class="menu-img-container">
+                                <img src="assets/imgs/coffe.webp" alt="Artisanal Coffee Selection">
+                            </div>
+                            <div class="menu-info">
+                                <h3>Artisanal Coffee</h3>
+                                <p class="menu-desc">Espresso, Americano, Latte, Cappuccino, Mocha, and slow-steeped signature Cold Brew.</p>
+                                <div class="menu-footer">
+                                    <span class="menu-category">Beverage</span>
+                                    <span class="menu-price">$3.50+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Tea -->
+                        <div class="menu-card">
+                            <div class="menu-img-container">
+                                <img src="assets/imgs/tea.webp" alt="Premium Teas Selection">
+                            </div>
+                            <div class="menu-info">
+                                <h3>Organic Teas</h3>
+                                <p class="menu-desc">Antioxidant-rich Green Tea, classic English Black Tea, soothing Herbal blends, and creamy Chai Latte.</p>
+                                <div class="menu-footer">
+                                    <span class="menu-category">Beverage</span>
+                                    <span class="menu-price">$3.00+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Pastries -->
+                        <div class="menu-card">
+                            <div class="menu-img-container">
+                                <img src="assets/imgs/pastries.webp" alt="Fresh Baked Pastries Selection">
+                            </div>
+                            <div class="menu-info">
+                                <h3>Oven-Fresh Pastries</h3>
+                                <p class="menu-desc">Flaky all-butter Croissants, seasonal fruit Muffins, crumbly sweet Scones, and chewy chocolate Cookies.</p>
+                                <div class="menu-footer">
+                                    <span class="menu-category">Bakery</span>
+                                    <span class="menu-price">$2.50+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Sandwiches -->
+                        <div class="menu-card">
+                            <div class="menu-img-container">
+                                <img src="assets/imgs/sandwiches.webp" alt="Handcrafted Sandwiches Selection">
+                            </div>
+                            <div class="menu-info">
+                                <h3>Gourmet Sandwiches</h3>
+                                <p class="menu-desc">Savory Turkey & Swiss, fresh grilled Veggie Delight, and classic rich Ham & Cheese on toasted sourdough.</p>
+                                <div class="menu-footer">
+                                    <span class="menu-category">Kitchen</span>
+                                    <span class="menu-price">$6.50+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Slider Section -->
+        <section id="testimonials" style="padding-top: 2rem;">
+            <div class="container">
+                <div class="glass-card">
+                    <div class="testimonial-slider">
+                        <div class="slides-container">
+                            <!-- Slide 1 -->
+                            <div class="slide active">
+                                <div class="testimonial-block">
+                                    <blockquote>
+                                        <p>"Morning Brew Cafe is my absolute go-to spot in Accra for an exceptional cup of coffee and a cozy workspace. The staff are warm, and the pastries are always fresh!"</p>
+                                        <cite>— Richard Nuhu</cite>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="slide">
+                                <div class="testimonial-block">
+                                    <blockquote>
+                                        <p>"The cold brew here is absolute perfection, and the glass card aesthetics of the shop are matched only by the warmth of the staff. A true neighborhood gem."</p>
+                                        <cite>— Sarah Boateng</cite>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="slide">
+                                <div class="testimonial-block">
+                                    <blockquote>
+                                        <p>"I've been working from Morning Brew Cafe almost daily. The high-speed Wi-Fi is reliable, the environment is inspiring, and the fresh pastries are top-tier!"</p>
+                                        <cite>— Kojo Mensah</cite>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slider Controls -->
+                        <div class="slider-controls">
+                            <button class="slider-btn prev-btn" aria-label="Previous Testimonial">&#10094;</button>
+                            <div class="slider-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                            </div>
+                            <button class="slider-btn next-btn" aria-label="Next Testimonial">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Opening Hours & Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-split-grid">
+                    
+                    <!-- Left: Opening Hours -->
+                    <div class="glass-card hours-card text-center">
+                        <h2>Opening Hours</h2>
+                        <p>Join us during our brewing hours. Dine-in, takeout, and high-speed Wi-Fi are always available.</p>
+                        
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="hours-day">Monday - Friday</span>
+                                <span class="hours-time">7:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">Saturday - Sunday</span>
+                                <span class="hours-time">12:00 PM - 6:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Form -->
+                    <div class="glass-card contact-card text-center">
+                        <h2>Contact Us</h2>
+                        <p>Have questions or feedback? Drop us a line below!</p>
+                        
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your full name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Your email address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            
+                            <input type="submit" value="Send Message">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Morning Brew Cafe</h3>
+                <p>Brewing happiness, one cup at a time.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Morning Brew Cafe. All rights reserved. Crafted by Richard Nuhu.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script src="js/script.js"></script>
+</body>
 </html>
