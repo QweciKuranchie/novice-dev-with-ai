@@ -14,8 +14,21 @@ import {
   Accessibility, 
   FileCode, 
   Compass, 
-  GitBranch 
+  GitBranch,
+  BookText
 } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+const lessonNotesRaw = import.meta.glob('../../curriculum/**/lesson-notes.md', { query: '?raw', eager: true, import: 'default' }) as Record<string, string>;
+const studentGuideRawArray = import.meta.glob('../../STUDENT-GUIDE.md', { query: '?raw', eager: true, import: 'default' }) as Record<string, string>;
+const studentGuideRaw = Object.values(studentGuideRawArray)[0] || '# Student Guide not found';
+
+// Helper to get lesson notes by module number (e.g. "01")
+const getLessonNotes = (num: string) => {
+  const key = Object.keys(lessonNotesRaw).find(k => k.includes(`module-${num}`));
+  return key ? lessonNotesRaw[key] : 'Lesson notes not found for this module.';
+};
 
 // Curriculum Data
 const MODULES = [
@@ -382,10 +395,11 @@ const PROMPT_PRESETS = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'modules' | 'builder' | 'resources'>('modules');
+  const [activeTab, setActiveTab] = useState<'guide' | 'modules' | 'builder' | 'resources'>('guide');
   const [selectedModule, setSelectedModule] = useState(MODULES[8]); // Module 9 default
   const [isDark, setIsDark] = useState(true);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [showFullLesson, setShowFullLesson] = useState(true);
 
   // Typewriter effect state
   const titleText = "PromptEng & AI Coding Classroom";
@@ -507,7 +521,18 @@ ${promptFormat || 'Standard response'}`;
       <main className="max-w-5xl w-full mx-auto px-6 mt-8 flex-1 flex flex-col gap-6">
         
         {/* Navigation Tabs */}
-        <div className="flex items-center gap-2 border-b border-border/30 pb-px">
+        <div className="flex items-center gap-2 border-b border-border/30 pb-px overflow-x-auto whitespace-nowrap">
+          <button 
+            onClick={() => setActiveTab('guide')}
+            className={`px-4 py-2 font-title text-sm font-semibold tracking-wide border-b-2 transition-all flex items-center gap-2 ${
+              activeTab === 'guide' 
+                ? 'border-cyan-500 text-foreground' 
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <BookText className="size-4" />
+            Student Guide
+          </button>
           <button 
             onClick={() => setActiveTab('modules')}
             className={`px-4 py-2 font-title text-sm font-semibold tracking-wide border-b-2 transition-all flex items-center gap-2 ${
@@ -542,6 +567,20 @@ ${promptFormat || 'Standard response'}`;
             Cheatsheet & Resources
           </button>
         </div>
+
+        {/* Tab content: Student Guide */}
+        {activeTab === 'guide' && (
+          <div className="bezel p-6 md:p-8 bg-card/25 rounded-md overflow-hidden relative">
+            <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
+              <BookText className="size-64" />
+            </div>
+            <div className="prose prose-sm md:prose-base prose-slate dark:prose-invert prose-cyan max-w-none relative z-10 prose-headings:font-title prose-a:text-cyan-500 hover:prose-a:text-cyan-400 prose-pre:bg-neutral-950/80 prose-pre:border prose-pre:border-border/40">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {studentGuideRaw}
+              </ReactMarkdown>
+            </div>
+          </div>
+        )}
 
         {/* Tab content: Curriculum Map */}
         {activeTab === 'modules' && (
@@ -613,6 +652,27 @@ ${promptFormat || 'Standard response'}`;
                     <Check className="size-4" /> Progression Milestone
                   </h4>
                   <p className="text-xs text-foreground/90 leading-relaxed font-mono">{selectedModule.milestone}</p>
+                </div>
+                
+                {/* Toggle Lesson Notes */}
+                <div className="mt-4 border-t border-border/20 pt-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-title text-base font-bold text-foreground">Interactive Lesson Notes</h4>
+                    <button 
+                      onClick={() => setShowFullLesson(!showFullLesson)}
+                      className="text-xs font-mono px-3 py-1.5 bezel bg-card/50 text-cyan-500 hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all"
+                    >
+                      {showFullLesson ? 'Hide Lesson Content' : 'Read Full Lesson'}
+                    </button>
+                  </div>
+                  
+                  {showFullLesson && (
+                    <div className="prose prose-sm prose-slate dark:prose-invert prose-cyan max-w-none prose-headings:font-title prose-a:text-cyan-500 hover:prose-a:text-cyan-400 prose-pre:bg-neutral-950/80 prose-pre:border prose-pre:border-border/40 bg-neutral-950/30 p-6 rounded-md border border-border/30">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {getLessonNotes(selectedModule.num)}
+                      </ReactMarkdown>
+                    </div>
+                  )}
                 </div>
               </div>
 
