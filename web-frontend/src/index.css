@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../index.html";
+@source "./App.tsx";
+@source "./main.tsx";
 
 @theme inline {
   --color-background: var(--background);
