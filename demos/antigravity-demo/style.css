@@ -1,0 +1,216 @@
+/* === CSS reset === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Theme Variables (from app-context) === */
+:root {
+  --color-bg-dark: #0d0e15;
+  --color-card: #161722;
+  --color-border: #232537;
+  --color-accent: #00f5ff;
+  --color-accent-hover: #00c2cc;
+  --color-text-highlight: #ffffff;
+  --color-text-muted: #8c92b3;
+  --color-focus: rgba(0, 245, 255, 0.4);
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-muted);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: var(--color-accent);
+  color: var(--color-bg-dark);
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Keyboard focus standard styles */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.25rem 2rem;
+  background-color: rgba(22, 23, 34, 0.5);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  color: var(--color-text-highlight);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links__item {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links__item:hover {
+  color: var(--color-text-highlight);
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1.5rem;
+}
+
+/* Profile Card */
+.profile-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.profile-card__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profile-card__avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid var(--color-border);
+  object-fit: cover;
+}
+
+.profile-card__name {
+  color: var(--color-text-highlight);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.profile-card__title {
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.profile-card__bio {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Stats */
+.profile-stats {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.25rem 0;
+  margin: 0.5rem 0;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-item__value {
+  display: block;
+  color: var(--color-text-highlight);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.stat-item__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+/* Buttons */
+.btn-action {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--color-accent);
+  color: var(--color-bg-dark);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-action:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.btn-action:active {
+  transform: scale(0.98);
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+}

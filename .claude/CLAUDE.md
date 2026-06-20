@@ -709,7 +709,9 @@ novice-dev-with-ai/
 │   ├── module-05-grid/
 │   ├── module-06-responsive/
 │   ├── module-07-accessibility/
-│   └── module-08-javascript/
+│   ├── module-08-javascript/
+│   ├── module-09-prompt-eng/        ← Prompt engineering guide
+│   └── module-10-ai-assisted-coding/ ← AI workspace config guide
 │
 ├── student-projects/                ← YOUR WORK GOES HERE
 │   └── [your-name]/
@@ -721,12 +723,13 @@ novice-dev-with-ai/
 ├── exercises/                       ← Practice exercises (do these in order)
 │   ├── html/
 │   ├── css/
-│   └── js/
+│   ├── prompt-eng/
+│   └── ai-coding/
 │
 ├── demos/                           ← Instructor reference demos
 │   ├── flexbox-demo/
-│   ├── grid-demo/
-│   └── responsive-demo/
+│   ├── prompt-engineering-demo/
+│   └── antigravity-demo/
 │
 ├── README.md                        ← Start here — course overview for students
 └── LICENSE
@@ -775,6 +778,8 @@ You do not move to the next module until you can demonstrate the milestone:
 | 6 — Responsive | Make any layout work on mobile, tablet, and desktop |
 | 7 — Accessibility | Identify and fix 5 accessibility issues in your own code |
 | 8 — JavaScript | Add form validation and a dark mode toggle using vanilla JS |
+| 9 — Prompt Engineering | Submit a prompts log containing structured generation, review, and debug prompts |
+| 10 — AI-Assisted Coding | Initialize a `.ai` folder and use Antigravity to build a compliant styled dashboard |
 
 ### The Developer Mindset
 

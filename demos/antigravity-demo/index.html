@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dashboard — Antigravity Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="navbar">
+      <nav class="nav-container">
+        <a href="#" class="nav-logo">
+          <span class="nav-logo__icon">💠</span> DevProfile
+        </a>
+        <ul class="nav-links">
+          <li><a href="#" class="nav-links__item">Explore</a></li>
+          <li><a href="#" class="nav-links__item">Settings</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="dashboard-container">
+      <section class="profile-card">
+        <header class="profile-card__header">
+          <!-- Image has a meaningful, descriptive alt tag -->
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250&h=250" 
+               alt="Headshot of Sarah Jenkins, a senior frontend engineer based in Boston" 
+               class="profile-card__avatar">
+          <h2 class="profile-card__name">Sarah Jenkins</h2>
+          <p class="profile-card__title">Senior Frontend Architect</p>
+        </header>
+
+        <div class="profile-card__body">
+          <p class="profile-card__bio">
+            Building accessible and highly performant interfaces. Passionate about design systems, CSS architecture, and mentoring next-generation developers.
+          </p>
+
+          <div class="profile-stats">
+            <div class="stat-item">
+              <span class="stat-item__value">142</span>
+              <span class="stat-item__label">Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item__value">12.8k</span>
+              <span class="stat-item__label">Followers</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item__value">412</span>
+              <span class="stat-item__label">Following</span>
+            </div>
+          </div>
+        </div>
+
+        <footer class="profile-card__footer">
+          <button type="button" class="btn-action">
+            Follow Sarah
+          </button>
+        </footer>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__text">&copy; 2026 DevProfile. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

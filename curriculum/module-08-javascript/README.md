@@ -2,7 +2,7 @@
 
 **Duration:** 4–5 class sessions  
 **Prerequisites:** Module 7 — Accessibility milestone complete  
-**Next:** Advanced JavaScript or a framework course
+**Next:** [Module 9 — Prompt Engineering for Web Developers](../module-09-prompt-eng/README.md)
 
 ---
 

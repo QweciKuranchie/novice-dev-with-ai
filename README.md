@@ -4,8 +4,8 @@
 > from scratch. Built for complete beginners. Powered by Claude, GitHub Copilot, and
 > the Everything Claude Code (ECC) AI agent system.
 >
-> 📡 **Format:** Live Zoom Sessions &nbsp;|&nbsp; 📅 **Duration:** 4 Days &nbsp;|&nbsp; ⏱ **Each session:** 2 Hours
-> Day 1: Environment Setup &nbsp;|&nbsp; Days 2–4: HTML, CSS, Flexbox & Responsive Design
+> 📡 **Format:** Live Zoom Sessions &nbsp;|&nbsp; 📅 **Duration:** 6 Days &nbsp;|&nbsp; ⏱ **Each session:** 2 Hours
+> Day 1: Environment Setup &nbsp;|&nbsp; Days 2–4: HTML, CSS, Flexbox & Responsive Design &nbsp;|&nbsp; Days 5–6: Prompt Engineering & AI-Assisted Coding with Antigravity
 
 ---
 
@@ -34,6 +34,8 @@
 | **Day 2** | HTML Basics — Boilerplate, Tags, Elements, Your First Page | 2 hours | Zoom — concept + exercises |
 | **Day 3** | Semantic HTML + CSS Introduction — Box Model, Typography | 2 hours | Zoom — concept + exercises |
 | **Day 4** | Flexbox + Responsive Design + Final Personal Page | 2 hours | Zoom — build + share |
+| **Day 5** | Prompt Engineering — Prompt Formulas, SWE Workflows | 2 hours | Zoom — concept + exercises |
+| **Day 6** | AI-Assisted Coding — Custom AI Rules, Context, and Skills | 2 hours | Zoom — build + share |
 
 **Every session follows this pattern:**
 ```
@@ -71,7 +73,7 @@
 
 This is not just a code repository. It is a **complete learning environment** that combines:
 
-- A structured HTML and CSS curriculum (8 modules)
+- A structured HTML, CSS, and AI Engineering curriculum (10 modules)
 - A pre-configured AI agent system for teaching and code review
 - Real project exercises you build yourself
 - A GitHub-based workflow that mirrors how professional developers work
@@ -153,7 +155,10 @@ By the end of this course you will be able to:
 | Make websites work on any screen size | 6 |
 | Make websites accessible to all users | 7 |
 | Add interactivity with vanilla JavaScript | 8 |
-| Use AI as a professional development tool | All |
+| Engineer prompts using the 5-Part Prompt Formula | 9 |
+| Use AI as a debugging tutor, reviewer, and refactorer | 9 |
+| Initiate local AI settings with the `.ai` configuration folder | 10 |
+| Write custom rules, contexts, and workflow skills | 10 |
 | Work with Git and GitHub like a developer | All |
 
 ---
@@ -502,6 +507,24 @@ complete the milestone for the current one.
 - Dark mode toggle project
 - **Milestone:** Build a working form validator + dark mode toggle
 
+### Module 9 — Prompt Engineering
+**Goal:** Use generative AI as a precise tool rather than a generic generator.
+- Generative AI basics & prompt design
+- The 5-Part Prompt Formula (Role, Context, Task, Constraints, Format)
+- Writing constraints to ensure semantic, standard-compliant code
+- Prompting for code generation, reviews, and explanations
+- Interactive debugging via structured hints prompts
+- **Milestone:** Create a structured prompt log documenting modal component creation and debugging
+
+### Module 10 — AI-Assisted Coding with Antigravity
+**Goal:** Customize Antigravity IDE behavior for a local project.
+- The `.ai` workspace configuration folder architecture
+- Initializing rules, contexts, and skills templates
+- Restricting AI styling formats (rem vs px, variables) via custom rules
+- Contextualizing page structures (mock routes, headers, footers) via contexts
+- Automating checklist workflows (BEM naming, accessibility checks) via custom skills
+- **Milestone:** Build a fully styled dashboard component styled entirely by AI following custom rules
+
 ---
 
 ## How to Use AI Tools Responsibly
@@ -580,7 +603,9 @@ novice-dev-with-ai/
 │   ├── module-05-grid/
 │   ├── module-06-responsive/
 │   ├── module-07-accessibility/
-│   └── module-08-javascript/
+│   ├── module-08-javascript/
+│   ├── module-09-prompt-eng/        ← Prompt engineering guide
+│   └── module-10-ai-assisted-coding/ ← AI workspace config guide
 │
 ├── student-projects/                ← YOUR CODE LIVES HERE ✏️
 │   └── your-name/
@@ -592,12 +617,13 @@ novice-dev-with-ai/
 ├── exercises/                       ← Practice exercises (do in order)
 │   ├── html/
 │   ├── css/
-│   └── js/
+│   ├── prompt-eng/
+│   └── ai-coding/
 │
 ├── demos/                           ← Reference demos from the instructor
 │   ├── flexbox-demo/
-│   ├── grid-demo/
-│   └── responsive-demo/
+│   ├── prompt-engineering-demo/
+│   └── antigravity-demo/
 │
 ├── README.md                        ← You are here
 └── LICENSE
@@ -743,6 +769,8 @@ Milestones are assessed via a Pull Request — the instructor reviews your work.
 | **6 — Responsive** | Make your existing project look correct on mobile, tablet, and desktop |
 | **7 — Accessibility** | Run a WAVE audit, identify 5 issues, and fix all 5 in your code |
 | **8 — JavaScript** | Build a working contact form validator + a dark/light mode toggle |
+| **9 — Prompt Engineering** | Submit structured prompts (`prompts-log.md`) used for layout generation and debugging |
+| **10 — AI-Assisted Coding** | Initialize `.ai` folder and use Antigravity to build a dashboard complying with custom rules |
 
 ---
 
