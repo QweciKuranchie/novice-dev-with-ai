@@ -135,3 +135,6 @@ Before starting each session, review your current milestone:
 | 6 | Make a complete layout responsive: mobile, tablet, desktop |
 | 7 | Identify and fix 5 accessibility issues in your own code |
 | 8 | Build a form validator + dark mode toggle with vanilla JS |
+| 9 | Submit structured prompts (prompts-log.md) used for generation and debug assistance |
+| 10 | Initialize .ai folder and build a styled dashboard following custom rules |
+
