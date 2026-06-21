@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useTransition } from 'react'
+import React, { useState, useEffect, useTransition, useMemo } from 'react'
 import { 
   BookOpen, 
   Terminal, 
@@ -532,6 +532,31 @@ export default function App() {
     setDemoTab('preview');
   };
 
+  // Memoized Heavy Markdown Content for high performance (0ms render overhead on unrelated state updates)
+  const renderedStudentGuide = useMemo(() => (
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
+      {studentGuideRaw}
+    </ReactMarkdown>
+  ), []);
+
+  const renderedLessonNotes = useMemo(() => {
+    const notes = getLessonNotes(selectedModule.num);
+    return (
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
+        {notes}
+      </ReactMarkdown>
+    );
+  }, [selectedModule.num]);
+
+  const renderedDemoCheatsheet = useMemo(() => {
+    const cheatsheet = getDemoContent('prompt-engineering-demo', 'md');
+    return (
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
+        {cheatsheet}
+      </ReactMarkdown>
+    );
+  }, [selectedDemo]);
+
   // Typewriter effect state
   const titleText = "PromptEng & AI Coding Classroom";
   const [displayedTitle, setDisplayedTitle] = useState("");
@@ -724,21 +749,19 @@ ${promptFormat || 'Standard response'}`;
         </div>
 
         {/* Tab content: Student Guide */}
-        {activeTab === 'guide' && (
+        <div className={activeTab === 'guide' ? 'animate-fade-in' : 'hidden'}>
           <div className="bezel p-6 md:p-8 bg-card/25 rounded-md overflow-hidden relative">
             <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
               <BookText className="size-64" />
             </div>
-            <div className="prose prose-sm md:prose-base dark:prose-invert max-w-none relative z-10 prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
-                {studentGuideRaw}
-              </ReactMarkdown>
+            <div className="prose prose-sm md:prose-base dark:prose-invert max-w-none relative z-10 prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-blockquote:text-foreground/80 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40">
+              {renderedStudentGuide}
             </div>
           </div>
-        )}
+        </div>
 
         {/* Tab content: Curriculum Map */}
-        {activeTab === 'modules' && (
+        <div className={activeTab === 'modules' ? 'animate-fade-in' : 'hidden'}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             
             {/* Sidebar Modules List */}
@@ -822,10 +845,8 @@ ${promptFormat || 'Standard response'}`;
                   </div>
                   
                   {showFullLesson && (
-                    <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40 bg-neutral-950/30 p-6 rounded-md border border-border/30">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
-                        {getLessonNotes(selectedModule.num)}
-                      </ReactMarkdown>
+                    <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-blockquote:text-foreground/80 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40 bg-neutral-950/30 p-6 rounded-md border border-border/30">
+                      {renderedLessonNotes}
                     </div>
                   )}
                 </div>
@@ -864,10 +885,10 @@ ${promptFormat || 'Standard response'}`;
 
             </div>
           </div>
-        )}
+        </div>
 
         {/* Tab content: Interactive Demos */}
-        {activeTab === 'demos' && (
+        <div className={activeTab === 'demos' ? 'animate-fade-in' : 'hidden'}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             
             {/* Sidebar Demos List */}
@@ -1043,10 +1064,8 @@ ${promptFormat || 'Standard response'}`;
                   )}
 
                   {demoTab === 'cheatsheet' && selectedDemo === 'prompt' && (
-                    <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40 bg-neutral-950/30 p-6 rounded-md border border-border/30 overflow-y-auto max-h-[550px]">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
-                        {getDemoContent('prompt-engineering-demo', 'md')}
-                      </ReactMarkdown>
+                    <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-blockquote:text-foreground/80 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40 bg-neutral-950/30 p-6 rounded-md border border-border/30 overflow-y-auto max-h-[550px]">
+                      {renderedDemoCheatsheet}
                     </div>
                   )}
                 </div>
@@ -1054,10 +1073,10 @@ ${promptFormat || 'Standard response'}`;
             </div>
 
           </div>
-        )}
+        </div>
 
         {/* Tab content: Interactive Prompt Builder */}
-        {activeTab === 'builder' && (
+        <div className={activeTab === 'builder' ? 'animate-fade-in' : 'hidden'}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             
             {/* Left Column: Form Controls */}
@@ -1181,10 +1200,10 @@ ${promptFormat || 'Standard response'}`;
             </div>
 
           </div>
-        )}
+        </div>
 
         {/* Tab content: Cheatsheet & Resources */}
-        {activeTab === 'resources' && (
+        <div className={activeTab === 'resources' ? 'animate-fade-in' : 'hidden'}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             
             {/* Git cheatsheet */}
@@ -1256,7 +1275,7 @@ ${promptFormat || 'Standard response'}`;
             </div>
 
           </div>
-        )}
+        </div>
 
       </main>
 
