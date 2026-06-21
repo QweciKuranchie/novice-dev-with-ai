@@ -15,7 +15,8 @@ import {
   FileCode, 
   Compass, 
   GitBranch,
-  BookText
+  BookText,
+  Play
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -24,10 +25,35 @@ const lessonNotesRaw = import.meta.glob('../../curriculum/**/lesson-notes.md', {
 const studentGuideRawArray = import.meta.glob('../../STUDENT-GUIDE.md', { query: '?raw', eager: true, import: 'default' }) as Record<string, string>;
 const studentGuideRaw = Object.values(studentGuideRawArray)[0] || '# Student Guide not found';
 
+const demoHtmlRaw = import.meta.glob('../../demos/**/*.html', { query: '?raw', eager: true, import: 'default' }) as Record<string, string>;
+const demoCssRaw = import.meta.glob('../../demos/**/*.css', { query: '?raw', eager: true, import: 'default' }) as Record<string, string>;
+const demoMdRaw = import.meta.glob('../../demos/**/*.md', { query: '?raw', eager: true, import: 'default' }) as Record<string, string>;
+
 // Helper to get lesson notes by module number (e.g. "01")
 const getLessonNotes = (num: string) => {
   const key = Object.keys(lessonNotesRaw).find(k => k.includes(`module-${num}`));
   return key ? lessonNotesRaw[key] : 'Lesson notes not found for this module.';
+};
+
+// Helper to get demo contents by name
+const getDemoContent = (name: string, type: 'html' | 'css' | 'md') => {
+  const glob = type === 'html' ? demoHtmlRaw : type === 'css' ? demoCssRaw : demoMdRaw;
+  const key = Object.keys(glob).find(k => k.toLowerCase().includes(name.toLowerCase()));
+  return key ? glob[key] : '';
+};
+
+// Helper to compile iframe srcDoc for a demo with its styles injected
+const getDemoSrcDoc = (name: string) => {
+  let html = getDemoContent(name, 'html');
+  const css = getDemoContent(name, 'css');
+  if (html && css) {
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `<style>${css}</style></head>`);
+    } else {
+      html = `<style>${css}</style>${html}`;
+    }
+  }
+  return html;
 };
 
 const CodeBlockRenderer = ({ node, inline, className, children, ...props }: any) => {
@@ -42,8 +68,8 @@ const CodeBlockRenderer = ({ node, inline, className, children, ...props }: any)
     setTimeout(() => setCopied(false), 2000)
   }
 
-  if (!inline && match) {
-    const lang = match[1]
+  if (!inline) {
+    const lang = match ? match[1] : 'text'
     const isHtml = lang === 'html' || lang === 'xml'
     
     return (
@@ -493,11 +519,18 @@ const PROMPT_PRESETS = [
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [isPending, startTransition] = useTransition();
-  const [activeTab, setActiveTab] = useState<'guide' | 'modules' | 'builder' | 'resources'>('guide');
+  const [activeTab, setActiveTab] = useState<'guide' | 'modules' | 'demos' | 'builder' | 'resources'>('guide');
   const [selectedModule, setSelectedModule] = useState(MODULES[8]); // Module 9 default
   const [isDark, setIsDark] = useState(true);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [showFullLesson, setShowFullLesson] = useState(true);
+  const [selectedDemo, setSelectedDemo] = useState<'flexbox' | 'prompt' | 'antigravity'>('flexbox');
+  const [demoTab, setDemoTab] = useState<'preview' | 'html' | 'css' | 'cheatsheet'>('preview');
+
+  const handleSelectDemo = (demo: 'flexbox' | 'prompt' | 'antigravity') => {
+    setSelectedDemo(demo);
+    setDemoTab('preview');
+  };
 
   // Typewriter effect state
   const titleText = "PromptEng & AI Coding Classroom";
@@ -607,6 +640,16 @@ ${promptFormat || 'Standard response'}`;
               </span>
             </div>
 
+            <a 
+              href="https://github.com/mhiskall282/novice-dev-with-ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bezel bg-card/60 text-muted-foreground hover:text-foreground hover:border-cyan-500/50 transition-all duration-300 flex items-center justify-center"
+              title="GitHub Repository"
+            >
+              <Github className="size-4" />
+            </a>
+
             <button 
               onClick={() => setIsDark(!isDark)}
               className="p-2 bezel bg-card/60 text-muted-foreground hover:text-foreground hover:border-cyan-500/50 transition-all duration-300"
@@ -644,6 +687,17 @@ ${promptFormat || 'Standard response'}`;
           >
             <BookOpen className="size-4" />
             Curriculum Map
+          </button>
+          <button 
+            onClick={() => startTransition(() => setActiveTab('demos'))}
+            className={`px-4 py-2 font-title text-sm font-semibold tracking-wide border-b-2 transition-all flex items-center gap-2 ${
+              activeTab === 'demos' 
+                ? 'border-cyan-500 text-foreground' 
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Play className="size-4" />
+            Interactive Demos
           </button>
           <button 
             onClick={() => startTransition(() => setActiveTab('builder'))}
@@ -785,35 +839,220 @@ ${promptFormat || 'Standard response'}`;
                     <div key={idx} className="bezel p-5 bg-card/25 rounded-md flex flex-col gap-3">
                       <div className="flex items-center justify-between border-b border-border/20 pb-2">
                         <h4 className="font-title text-sm font-semibold text-foreground">{ex.name}</h4>
-                        <button
-                          onClick={() => handleCopy(ex.code, `ex-${idx}`)}
-                          className="flex items-center gap-1.5 px-2 py-1 text-[10px] font-mono bezel bg-card/50 text-muted-foreground hover:text-foreground hover:border-cyan-500/50 transition-all"
-                        >
-                          {copiedId === `ex-${idx}` ? (
-                            <>
-                              <Check className="size-3 text-emerald-500" />
-                              <span className="text-emerald-500">Copied</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="size-3" />
-                              <span>Copy Template</span>
-                            </>
-                          )}
-                        </button>
                       </div>
                       <p className="text-xs text-muted-foreground">{ex.desc}</p>
-                      <div className="bg-neutral-950/70 dark:bg-black/70 p-3.5 rounded-sm border border-border/10 overflow-x-auto">
-                        <pre className="font-mono text-xs text-slate-200">
-                          <code>{ex.code}</code>
-                        </pre>
-                      </div>
+                      <CodeBlockRenderer 
+                        inline={false} 
+                        className={
+                          selectedModule.num === "01" || selectedModule.num === "02" || selectedModule.num === "04" || selectedModule.num === "07"
+                            ? "language-html" 
+                            : selectedModule.num === "03" || selectedModule.num === "05" || selectedModule.num === "06"
+                            ? "language-css"
+                            : selectedModule.num === "08"
+                            ? "language-javascript"
+                            : selectedModule.num === "10"
+                            ? "language-markdown"
+                            : "language-text"
+                        }
+                      >
+                        {ex.code}
+                      </CodeBlockRenderer>
                     </div>
                   ))}
                 </div>
               </div>
 
             </div>
+          </div>
+        )}
+
+        {/* Tab content: Interactive Demos */}
+        {activeTab === 'demos' && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+            
+            {/* Sidebar Demos List */}
+            <div className="md:col-span-1 flex flex-col gap-2.5">
+              <span className="text-section-title text-muted-foreground/60 mb-1">Interactive Demos</span>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => startTransition(() => handleSelectDemo('flexbox'))}
+                  className={`text-left p-3 bezel rounded-sm transition-all duration-200 flex items-center gap-3 ${
+                    selectedDemo === 'flexbox' 
+                      ? 'border-cyan-500/60 bg-cyan-500/5 shadow-glow-cyan text-foreground' 
+                      : 'bg-card/30 hover:bg-card/70 hover:border-border text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <span className={`font-mono text-xs font-bold ${selectedDemo === 'flexbox' ? 'text-cyan-500' : 'text-muted-foreground/50'}`}>
+                    01
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-semibold leading-tight font-title">Flexbox Playground</span>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => startTransition(() => handleSelectDemo('prompt'))}
+                  className={`text-left p-3 bezel rounded-sm transition-all duration-200 flex items-center gap-3 ${
+                    selectedDemo === 'prompt' 
+                      ? 'border-cyan-500/60 bg-cyan-500/5 shadow-glow-cyan text-foreground' 
+                      : 'bg-card/30 hover:bg-card/70 hover:border-border text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <span className={`font-mono text-xs font-bold ${selectedDemo === 'prompt' ? 'text-cyan-500' : 'text-muted-foreground/50'}`}>
+                    02
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-semibold leading-tight font-title">Prompt Eng Simulator</span>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => startTransition(() => handleSelectDemo('antigravity'))}
+                  className={`text-left p-3 bezel rounded-sm transition-all duration-200 flex items-center gap-3 ${
+                    selectedDemo === 'antigravity' 
+                      ? 'border-cyan-500/60 bg-cyan-500/5 shadow-glow-cyan text-foreground' 
+                      : 'bg-card/30 hover:bg-card/70 hover:border-border text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <span className={`font-mono text-xs font-bold ${selectedDemo === 'antigravity' ? 'text-cyan-500' : 'text-muted-foreground/50'}`}>
+                    03
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-semibold leading-tight font-title">Antigravity Rules Auditor</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Selected Demo Detail & Sandbox */}
+            <div className="md:col-span-2 flex flex-col gap-6">
+              <div className="bezel p-6 bg-card/20 rounded-md flex flex-col gap-4 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+                  <Play className="size-32 text-cyan-500" />
+                </div>
+
+                <div className="flex flex-col border-b border-border/20 pb-3">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-500 font-bold">
+                    Demo {selectedDemo === 'flexbox' ? '01' : selectedDemo === 'prompt' ? '02' : '03'}
+                  </span>
+                  <h2 className="font-title text-xl font-bold text-foreground mt-0.5">
+                    {selectedDemo === 'flexbox' 
+                      ? 'CSS Flexbox Playground' 
+                      : selectedDemo === 'prompt' 
+                      ? 'Prompt Engineering Simulator' 
+                      : 'Antigravity Workspace Auditor'}
+                  </h2>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    {selectedDemo === 'flexbox'
+                      ? 'Learn interactive layout design. Toggle parameters to see CSS Flexbox behavior in real-time.'
+                      : selectedDemo === 'prompt'
+                      ? 'Understand structural prompts. Read the developer cheatsheet or inspect simulator logic.'
+                      : 'Audit code against style guides. View standard configurations and compliance checklists.'}
+                  </p>
+                </div>
+
+                {/* Subtabs for Demo View */}
+                <div className="flex items-center gap-1.5 border-b border-border/10 pb-px font-mono text-[10px] uppercase tracking-wider font-bold">
+                  <button
+                    onClick={() => setDemoTab('preview')}
+                    className={`px-3 py-1.5 border-b-2 transition-all ${
+                      demoTab === 'preview'
+                        ? 'border-cyan-500 text-foreground'
+                        : 'border-transparent text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    Live Sandbox
+                  </button>
+                  <button
+                    onClick={() => setDemoTab('html')}
+                    className={`px-3 py-1.5 border-b-2 transition-all ${
+                      demoTab === 'html'
+                        ? 'border-cyan-500 text-foreground'
+                        : 'border-transparent text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    HTML Source
+                  </button>
+                  <button
+                    onClick={() => setDemoTab('css')}
+                    className={`px-3 py-1.5 border-b-2 transition-all ${
+                      demoTab === 'css'
+                        ? 'border-cyan-500 text-foreground'
+                        : 'border-transparent text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    CSS Stylesheet
+                  </button>
+                  {selectedDemo === 'prompt' && (
+                    <button
+                      onClick={() => setDemoTab('cheatsheet')}
+                      className={`px-3 py-1.5 border-b-2 transition-all ${
+                        demoTab === 'cheatsheet'
+                          ? 'border-cyan-500 text-foreground'
+                          : 'border-transparent text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      Developer Cheatsheet
+                    </button>
+                  )}
+                </div>
+
+                {/* Content according to selected Subtab */}
+                <div className="mt-2 relative">
+                  {demoTab === 'preview' && (
+                    <div className="rounded-md overflow-hidden border border-border/30 bg-white shadow-inner">
+                      <iframe
+                        title={`${selectedDemo}-live-preview`}
+                        srcDoc={getDemoSrcDoc(
+                          selectedDemo === 'flexbox' 
+                            ? 'flexbox-demo' 
+                            : selectedDemo === 'prompt' 
+                            ? 'prompt-engineering-demo' 
+                            : 'antigravity-demo'
+                        )}
+                        className="w-full min-h-[550px] border-none bg-white"
+                        sandbox="allow-scripts"
+                      />
+                    </div>
+                  )}
+
+                  {demoTab === 'html' && (
+                    <CodeBlockRenderer inline={false} className="language-html">
+                      {getDemoContent(
+                        selectedDemo === 'flexbox' 
+                          ? 'flexbox-demo' 
+                          : selectedDemo === 'prompt' 
+                          ? 'prompt-engineering-demo' 
+                          : 'antigravity-demo', 
+                        'html'
+                      )}
+                    </CodeBlockRenderer>
+                  )}
+
+                  {demoTab === 'css' && (
+                    <CodeBlockRenderer inline={false} className="language-css">
+                      {getDemoContent(
+                        selectedDemo === 'flexbox' 
+                          ? 'flexbox-demo' 
+                          : selectedDemo === 'prompt' 
+                          ? 'prompt-engineering-demo' 
+                          : 'antigravity-demo', 
+                        'css'
+                      )}
+                    </CodeBlockRenderer>
+                  )}
+
+                  {demoTab === 'cheatsheet' && selectedDemo === 'prompt' && (
+                    <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-title prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-cyan-400 hover:prose-a:text-cyan-300 prose-strong:text-cyan-500 prose-code:text-cyan-400 prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-th:text-foreground prose-td:text-foreground/80 prose-tr:border-border/40 bg-neutral-950/30 p-6 rounded-md border border-border/30 overflow-y-auto max-h-[550px]">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlockRenderer }}>
+                        {getDemoContent('prompt-engineering-demo', 'md')}
+                      </ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
           </div>
         )}
 
