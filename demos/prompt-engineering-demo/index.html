@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Prompt Engineering Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo__icon">⚡</span>
+        <h1 class="logo__title">PromptEng Studio</h1>
+      </div>
+      <p class="app-subtitle">Mastering Generative AI for Web Development</p>
+    </header>
+
+    <main class="app-container">
+      <!-- Section 1: Anatomy of a Prompt -->
+      <section class="card-section">
+        <h2 class="section-title">The 5-Part Prompt Formula</h2>
+        <p class="section-desc">To get elite code out of AI models, don't chat. Architect your instructions.</p>
+        
+        <div class="anatomy-grid">
+          <div class="anatomy-card" data-part="role">
+            <span class="badge">Part 1</span>
+            <h3>Role</h3>
+            <p>Tell the AI who it is. Sets the persona and skill level.</p>
+            <code>"Act as an accessibility advocate..."</code>
+          </div>
+          <div class="anatomy-card" data-part="context">
+            <span class="badge">Part 2</span>
+            <h3>Context</h3>
+            <p>State the background details of your environment and tech stack.</p>
+            <code>"I'm a student writing vanilla CSS..."</code>
+          </div>
+          <div class="anatomy-card" data-part="task">
+            <span class="badge">Part 3</span>
+            <h3>Task</h3>
+            <p>Describe exactly what you need built or explained.</p>
+            <code>"Create a 3-card grid layout..."</code>
+          </div>
+          <div class="anatomy-card" data-part="constraints">
+            <span class="badge">Part 4</span>
+            <h3>Constraints</h3>
+            <p>Establish strict limits to prevent bloated code or frameworks.</p>
+            <code>"No inline styles. No React. Under 30 lines."</code>
+          </div>
+          <div class="anatomy-card" data-part="format">
+            <span class="badge">Part 5</span>
+            <h3>Format</h3>
+            <p>Define the layout of the AI's final answer block.</p>
+            <code>"Output HTML first, then CSS..."</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Interactive Prompt Templates -->
+      <section class="card-section">
+        <h2 class="section-title">Developer Prompt Library</h2>
+        <div class="prompt-grid">
+          
+          <!-- Card 1 -->
+          <div class="prompt-card">
+            <header class="prompt-card__header">
+              <span class="prompt-type">Code Generation</span>
+              <h3>Responsive Card Layout</h3>
+            </header>
+            <div class="prompt-card__body">
+              <p>Generates a mobile-friendly grid of semantic service cards.</p>
+              <textarea readonly class="prompt-text">Act as a senior frontend engineer. I am building a portfolio website using static HTML and CSS. Write the HTML and CSS for a 3-column responsive card section. Use HTML5 semantics. Do not use Tailwind, Bootstrap, or JavaScript. Use CSS custom properties for styling. Output HTML code block first, then CSS.</textarea>
+            </div>
+            <footer class="prompt-card__footer">
+              <button class="btn btn--primary btn-copy">Copy Prompt</button>
+            </footer>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="prompt-card">
+            <header class="prompt-card__header">
+              <span class="prompt-type prompt-type--debug">Interactive Debugging</span>
+              <h3>The Debugging Tutor</h3>
+            </header>
+            <div class="prompt-card__body">
+              <p>Instructs the AI to guide you to find layout errors instead of coding them.</p>
+              <textarea readonly class="prompt-text">Act as a patient web coding tutor. My navbar is overlapping on mobile layout, but fine on desktop. Look at the code below, point to the lines causing the issue, and provide 3 helpful questions to guide me to the fix. Do not write the solution code block.</textarea>
+            </div>
+            <footer class="prompt-card__footer">
+              <button class="btn btn--primary btn-copy">Copy Prompt</button>
+            </footer>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="prompt-card">
+            <header class="prompt-card__header">
+              <span class="prompt-type prompt-type--explain">Code Explanation</span>
+              <h3>CSS Box Model Analogy</h3>
+            </header>
+            <div class="prompt-card__body">
+              <p>Explains complex layout properties with clear real-world analogies.</p>
+              <textarea readonly class="prompt-text">Act as a friendly CS teacher. Explain the difference between padding and margin using a real-world analogy. Limit the description to 3 short paragraphs and do not show code blocks yet.</textarea>
+            </div>
+            <footer class="prompt-card__footer">
+              <button class="btn btn--primary btn-copy">Copy Prompt</button>
+            </footer>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 3: Before & After comparison -->
+      <section class="card-section">
+        <h2 class="section-title">The Power of Constraints</h2>
+        <div class="comparison-grid">
+          <div class="comparison-pane">
+            <h4 class="comparison-pane__title comparison-pane__title--bad">Without Constraints ("Write a button")</h4>
+            <div class="code-box">
+              <pre><code>&lt;div class="btn" style="color: blue; padding: 10px;" onclick="location.href='#'"&gt;
+  &lt;span&gt;Click Me!&lt;/span&gt;
+&lt;/div&gt;
+&lt;!-- Issues: Non-semantic div, inline styling, JS redirect, poor accessibility --&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div class="comparison-pane">
+            <h4 class="comparison-pane__title comparison-pane__title--good">With Constraints (Semantic & Accessible)</h4>
+            <div class="code-box">
+              <pre><code>&lt;button type="button" class="btn-primary"&gt;
+  Submit Form
+&lt;/button&gt;
+&lt;!-- Clean, semantic, fully keyboard-accessible, styled cleanly in CSS --&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Built with ❤️ for Web Dev + AI Engineering class.</p>
+    </footer>
+
+    <script>
+      document.querySelectorAll('.btn-copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const textarea = btn.closest('.prompt-card').querySelector('.prompt-text');
+          textarea.select();
+          document.execCommand('copy');
+          
+          const origText = btn.textContent;
+          btn.textContent = 'Copied! ✅';
+          btn.style.backgroundColor = '#10b981';
+          setTimeout(() => {
+            btn.textContent = origText;
+            btn.style.backgroundColor = '';
+          }, 1500);
+        });
+      });
+    </script>
+  </body>
+</html>

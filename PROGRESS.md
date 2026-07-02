@@ -20,16 +20,16 @@
 
 ## Milestone Tracker
 
-| Student | Setup (D1) | HTML (D2) | Semantic+CSS (D3) | Flexbox+Final (D4) | Notes |
-|---|---|---|---|---|---|
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
-| [Student Name] | 🚫 | — | — | — | |
+| Student | Setup (D1) | HTML (D2) | Semantic+CSS (D3) | Flexbox+Final (D4) | Prompt Eng (D5) | AI Coding (D6) | Notes |
+|---|---|---|---|---|---|---|---|
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
+| [Student Name] | 🚫 | — | — | — | — | — | |
 
 ---
 
@@ -81,6 +81,28 @@ Update the Notes column with anything relevant (missed session, extra help neede
 ---
 
 ### Day 4 — Flexbox + Responsive + Final Page
+**Date:** [DATE]
+**Attendance:** [X] / [total]
+**Common issues observed:**
+- 
+
+**Follow-up needed:**
+- 
+
+---
+
+### Day 5 — Prompt Engineering
+**Date:** [DATE]
+**Attendance:** [X] / [total]
+**Common issues observed:**
+- 
+
+**Follow-up needed:**
+- 
+
+---
+
+### Day 6 — AI-Assisted Coding
 **Date:** [DATE]
 **Attendance:** [X] / [total]
 **Common issues observed:**

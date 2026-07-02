@@ -14,11 +14,13 @@
 4. [Day 2 — HTML Basics](#day-2--html-basics)
 5. [Day 3 — Semantic HTML and CSS Introduction](#day-3--semantic-html-and-css-introduction)
 6. [Day 4 — Flexbox, Responsive Design, and Your First Real Page](#day-4--flexbox-responsive-design-and-your-first-real-page)
-7. [Understanding the .claude Folder](#understanding-the-claude-folder)
-8. [How to Use Antigravity as Your Tutor](#how-to-use-antigravity-as-your-tutor)
-9. [How to Ask for Help During Zoom Sessions](#how-to-ask-for-help-during-zoom-sessions)
-10. [How to Submit Your Work](#how-to-submit-your-work)
-11. [Student Commitments](#student-commitments)
+7. [Day 5 — Prompt Engineering](#day-5--prompt-engineering)
+8. [Day 6 — AI-Assisted Coding with Antigravity](#day-6--ai-assisted-coding-with-antigravity)
+9. [Understanding the .claude Folder](#understanding-the-claude-folder)
+10. [How to Use Antigravity as Your Tutor](#how-to-use-antigravity-as-your-tutor)
+11. [How to Ask for Help During Zoom Sessions](#how-to-ask-for-help-during-zoom-sessions)
+12. [How to Submit Your Work](#how-to-submit-your-work)
+13. [Student Commitments](#student-commitments)
 
 ---
 
@@ -621,6 +623,89 @@ Build one page that includes everything from Days 2–4:
 
 ---
 
+## Day 5 — Prompt Engineering
+
+**Duration:** 2 hours | **Format:** Zoom — concept + live demo + exercises
+
+### What You Will Learn
+
+- The 5-Part Prompt Formula: Role, Context, Task, Constraints, and Output Format
+- Why negative constraints are powerful ("Do not use X", "Vanilla CSS only")
+- Using AI to explain code line-by-line with physical analogies
+- Crafting prompts for interactive debugging that request hints, not fixes
+- Self-reviewing code using AI rubric grading prompts
+
+### Session Outline
+
+```
+[0:00–0:10]  Homework review — check Git commits from Day 4
+[0:10–0:30]  Concept: The 5-Part Prompt Formula (Anatomy of a prompt)
+[0:30–0:50]  Live demo: Creating structured prompts to generate layout blocks
+[0:50–1:10]  Exercise A: Writing a prompt for a semantic pricing layout
+[1:10–1:20]  Concept: Prompting for Code Reviews & Debug hints
+[1:20–1:40]  Exercise B: Prompting the AI to guide you through a CSS layout bug
+[1:40–1:55]  Review: Share best prompts and AI outputs
+[1:55–2:00]  Homework preview + git push
+```
+
+### Exercise A — Structured Prompting for Pricing Section
+Write a structured prompt following the 5-Part Prompt Formula to generate a pricing section. 
+Run it in Antigravity, and verify that the output meets all constraints. Save to `pricing-prompt.txt`.
+
+### Exercise B — Prompting the Debug Buddy
+Create a CSS bug (e.g. mix absolute positioning on parent and child incorrectly). 
+Write a prompt constraining the AI to give you hints instead of corrected code blocks. Save to `debug-prompt.md`.
+
+### Day 5 Homework
+- Read `curriculum/module-10-ai-assisted-coding/README.md`
+- Try writing a prompt that requests a Refactoring Review on your Day 4 Personal Page
+- Push all changes to GitHub
+
+---
+
+## Day 6 — AI-Assisted Coding with Antigravity
+
+**Duration:** 2 hours | **Format:** Zoom — build + share
+
+### What You Will Learn
+
+- How Antigravity searches for custom behaviors in your workspace
+- The `.ai` directory architecture (`.ai/rules/`, `.ai/contexts/`, `.ai/skills/`)
+- Setting up custom HTML/CSS rules (rem fonts, variables, no inline style)
+- Writing context files to details page structures (branding, color palettes)
+- Writing custom workflow skills to validate code patterns (BEM conventions, accessibility audits)
+
+### Session Outline
+
+```
+[0:00–0:10]  Boilerplate test & prompt review
+[0:10–0:25]  Concept: The `.ai` configuration folder
+[0:25–0:45]  Live demo: Initializing `.ai/` and creating styling rules
+[0:45–1:05]  Exercise A: Creating an `ai-sandbox` and writing rules/contexts
+[1:05–1:20]  Concept: Custom skills playbooks (Bem validator, accessibility checker)
+[1:20–1:45]  Exercise B: Creating custom skills and building a dashboard component
+[1:45–1:55]  Screen shares: Students demonstrate how AI complied with their rules
+[1:55–2:00]  Commit, push, next steps
+```
+
+### Exercise A — Sandboxing the `.ai` Folder
+1. Create `student-projects/your-name/ai-sandbox/` and add the `.ai/` subfolders (`rules/`, `contexts/`, `skills/`).
+2. Add a rule file `.ai/rules/styling.md` that forbids styling elements via IDs or inline attributes, and enforces double quotes.
+
+### Exercise B — Building with Context & Skills
+1. Create a context file `.ai/contexts/dashboard.md` detailing the layouts (search bar, profile widgets) and colors.
+2. Teach the AI a custom skill in `.ai/skills/accessibility-check.md`.
+3. Ask the AI to write the code based on the context and rules, run your custom accessibility check, and fix any violations.
+
+### Day 6 Homework
+- Run WAVE check on the dashboard page
+- Commit and push `ai-sandbox` to your personal branch
+- Submit the final PR!
+
+---
+
+---
+
 ## Understanding the .claude Folder
 
 When you open this repo in VS Code or Antigravity, you will see a `.claude/` folder.
@@ -866,6 +951,7 @@ git log --oneline
 | W3C CSS Validator | Check for CSS errors | https://jigsaw.w3.org/css-validator |
 | Antigravity | Your AI tutor | The IDE you're working in |
 | GitHub | Store and share code | https://github.com |
+| `.ai` Folder | Customize local AI rules/contexts | Create `.ai/` directory in project root |
 
 ---
 

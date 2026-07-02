@@ -182,6 +182,9 @@ For each question include:
 | 6 | Pull Request: same layout working on mobile, tablet, desktop |
 | 7 | WAVE audit: zero errors, student explains each fix they made |
 | 8 | Live demo: form validation messages show, dark mode toggle works |
+| 9 | Pull Request: prompts-log.md containing 5-Part Formula templates for generation and debugging |
+| 10 | Pull Request: .ai/ workspace settings folder initialized and dashboard created complying with rules |
+
 
 ---
 
